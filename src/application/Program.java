@@ -29,11 +29,12 @@ public class Program {
 			System.out.print("Enter amount for withdraw: ");
 			double amount = sc.nextDouble();
 			Account account = new Account(number, holder);
+			
 			account.deposit(deposit);
 			account.setWithdrawLimite(limit);
 			account.withdraw(amount);
 			
-			System.out.println("New balance: " + account.getBalance());
+			System.out.printf("New balance: %.2f", account.getBalance());
 			sc.close();
 		} catch (BusinessException e) {
 			System.out.println("Withdraw error: " + e.getMessage());

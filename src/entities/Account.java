@@ -46,14 +46,19 @@ public class Account {
 	}
 	
 	public void withdraw(double amount) {
-		if(getBalance() <= 0 || getBalance() < amount) {
-			throw new BusinessException("Not enough balance");
-		}
+		validateWithdraw(amount);
+		balance -= amount;
+	}
+	
+	private void validateWithdraw(double amount) { 
 		if(getWithdrawLimite() < amount) {
 			throw new BusinessException("The amount exceeds withdraw limit");
 		}
-		balance -= amount;
+		if(getBalance() < amount) {
+			throw new BusinessException("Not enough balance");
+		}		
 	}
+	
 	
 	@Override
 	public String toString() {
